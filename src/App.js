@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from 'react';
-import { key } from './config';
   
 function App() {
   let page=1;
   let perpage=12;
+
+  const key=process.env.REACT_APP_API_KEY
 
     let [search,setsearch]=useState('')
 
@@ -14,6 +15,7 @@ function App() {
     let [button,setbutton]=useState(false)
 
    async function imagesearch(){
+    console.log(key)
      const url=`https://api.unsplash.com/search/collections?page=${page}&query=${search}&per_page=${perpage}&client_id=${key}`;
      const response=await fetch(url)
      const data=await response.json()
